@@ -1,0 +1,51 @@
+baseurl = "https://xusiwei.github.io/"
+title = "xusiwei's blog"
+author = "Siwei Xu"
+languageCode = "zh-cn"
+theme = "blackburn"
+
+# Shown in the side menu
+copyright = "&copy; 2016. All rights reserved."
+canonifyurls = false
+paginate = 10
+
+[indexes]
+  tag = "tags"
+  topic = "topics"
+
+[params]
+  # Shown in the home page
+  subtitle = "A coder's daily"
+  brand = "Blackburn"
+  # CSS name for highlight.js
+  highlightjs = "androidstudio"
+  dateFormat = "02 Jan 2006, 15:04"
+
+[menu]
+  # Shown in the side menu.
+  [[menu.main]]
+    name = "Home"
+    pre = "<i class='fa fa-home fa-fw'></i>"
+    weight = 0
+    identifier = "home"
+    url = "/"
+  [[menu.main]]
+    name = "Posts"
+    pre = "<i class='fa fa-list fa-fw'></i>"
+    weight = 1
+    identifier = "post"
+    url = "/post/"
+  [[menu.main]]
+    name = "About"
+    pre = "<i class='fa fa-user fa-fw'></i>"
+    weight = 2
+    identifier = "about"
+    url = "/about/"
+
+[social]
+  # Link your social networking accouns to the side menu
+  # by entering your username or ID.
+  weibo = "xu4v"
+  github = "xusiwei"
+
+
