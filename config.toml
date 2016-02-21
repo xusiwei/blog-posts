@@ -16,6 +16,7 @@ paginate = 10
 [params]
   # Shown in the home page
   brand = "siwei"
+  duoshuo = true
   subtitle = "A coder's daily"
   # CSS name for highlight.js
   highlightjs = "androidstudio"
