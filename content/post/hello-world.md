@@ -8,6 +8,7 @@ title = "你好，世界"
 # 关于 Hugo
 Hugo是一个静态网站生成器
 
+<!--more-->
 
 # Headers
 

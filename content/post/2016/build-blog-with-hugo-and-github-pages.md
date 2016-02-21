@@ -1,6 +1,6 @@
 +++
 date = "2016-02-21T16:36:54+08:00"
-description = ""
+description = "本文记录了我用Hugo和GitHub Pages搭建静态博客的过程，以及我对此的一点想法"
 draft = false
 tags = []
 title = "用Hugo和GitHub Pages搭建博客"
@@ -10,10 +10,9 @@ topics = []
 
 从前天晚上开始尝试了一下用Hugo和GitHub Pages搭建静态博客，总体还算顺利（主要是Hugo用起来比较方便）。
 
-# 关于 Hugo
-Hugo 是由 spf13 创建的一个静态网站生成器
+**关于 Hugo**
 
-Hugo首页：https://www.gohugo.io/
+Hugo 是由 spf13 创建的一个静态网站生成器，首页：https://www.gohugo.io/
 
 # Hugo 工作流
 
@@ -26,6 +25,7 @@ Hugo首页：https://www.gohugo.io/
 
 下载对应的操作系统版本的Hugo二进制文件（hugo或者hugo.exe），添加到`$PATH`能找到的目录下。
 
+<!--more-->
 
 ## 创建站点
 ```bash
