@@ -93,7 +93,20 @@ Go的编译型语言特性让Hugo**更容易**“二进制安装”。
 所以相对来说，Hugo的主要优势在于安装方便，据说生成速度也更快。
 
 
+# GitHub Pages 相对其他博客的好处
+对于程序员来说，GitHub Pages相对于：
+1. 注册类的博客网站，如CSDN
+2. 自建独立博客，如WrodPress
+
+GitHub Pages方式的好处在于————可以象管理代码一样管理博客，用git管理博客变更。
+
+正如 [@ruanyf](https://github.com/ruanyf) 所说，“他们既拥有绝对管理权，
+又享受github带来的便利----不管何时何地，只要向主机提交commit，就能发布新文章。
+更妙的是，这一切还是免费的，github提供无限流量，世界各地都有理想的访问速度。”
+
+
 # 参考链接
 1. hugo中文文档 [gohugo.org](http://gohugo.org/)
 2. http://blog.coderzh.com/2015/08/29/hugo/
+3. http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html
 
