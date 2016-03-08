@@ -105,7 +105,8 @@ xusiwei@github:/usr/local/nginx$ tree
 
 ## 启动
 
-源码编译安装生成的可执行文件位于 `/usr/local/nginx/sbin/`目录下，所以还需要将该目录加到`$PATH`下，或者`$PATH`的某个目录中创建一个符合链接指向 `/usr/local/nginx/sbin/nginx`
+源码编译安装生成的可执行文件位于 `/usr/local/nginx/sbin/`目录下，所以还需要将该目录加到`$PATH`下，
+或者在`$PATH`的某个目录中创建一个符号链接指向 `/usr/local/nginx/sbin/nginx`
 
 ```
 xusiwei@github:~$ cd /usr/local/bin/
@@ -117,7 +118,7 @@ nginx version: nginx/1.8.1
 然后，就可以启动了：
 ```
 xusiwei@github:~$ sudo nginx
-xusiwei@github:~$ 
+xusiwei@github:~$
 xusiwei@github:~$ ps -ef | grep nginx
 xu       26065 24955  2 3月07 pts/2   00:00:53 kwrite content/post/2016/nginx-source-warmup.md
 root     30077     1  0 00:08 ?        00:00:00 nginx: master process nginx
@@ -176,7 +177,8 @@ sudo nginx -s stop
 
 ## 关于软件源安装
 
-多数发行版的 软件源 中都已经收录了nginx，但通常版本都比较;另外，如果你的发行版所属的发行商已经不再维护那个版本了，比如ubuntu 10.04，所以如果你用的不是最新的发行版，不推荐默认软件源从软件源安装。
+多数发行版的 软件源 中都已经收录了nginx，但通常版本都比较;
+另外，如果你的发行版所属的发行商已经不再维护那个版本了，比如ubuntu 10.04，
+所以，不推荐从默认软件源安装。
 
 但如果觉得自己编译麻烦，可以从nginx.org的“源”安装预先编译好的软件包，具体步骤参见：http://nginx.org/en/linux_packages.html
-
