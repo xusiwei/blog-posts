@@ -21,6 +21,7 @@ paginate = 10
   # CSS name for highlight.js
   highlightjs = "androidstudio"
   dateFormat = "2006-01-02, 15:04"
+  googleAnalytics = "UA-75067552-1"
 
 [menu]
   # Shown in the side menu.
