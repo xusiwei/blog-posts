@@ -4,7 +4,7 @@ description = ""
 draft = false
 tags = []
 title = "NGINX 源码安装"
-topics = []
+topics = ["Nginx", "Ops"]
 
 +++
 
