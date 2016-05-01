@@ -8,7 +8,7 @@ topics = []
 
 +++
 
-[大开源镜像站](http://mirrors.ustc.edu.cn/)提供了raspbian的软件包镜像，国内的用户可以选择改用科大开源镜像站作为更新源。
+[科大开源镜像站](http://mirrors.ustc.edu.cn/)提供了raspbian的软件包镜像，国内的用户可以选择改用科大镜像站作为更新源。
 
 科大镜像站官方已经提供了一份[帮助文档](https://lug.ustc.edu.cn/wiki/mirrors/help/raspbian)，用于指导用户如何使用科大镜像更新raspbian。
 但这份文档是基于 wheezy 的，最新的jessie版可以参考本文。
@@ -19,7 +19,7 @@ topics = []
 cp /etc/apt/sources.list ~
 cp /etc/apt/sources.d/raspi.list ~
 ```
-或者将原有的配置注释掉。
+或者直接在原来配置文件的基础上修改，但将原有的配置全部注释掉（使用#注释）。
 
 ### 修改 source.list
 更新后的`/etc/apt/sources.list`：
@@ -31,7 +31,7 @@ cp /etc/apt/sources.d/raspi.list ~
 # use ustc mirror:
 deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main contrib non-free rpi
 ```
-实际修改是将`mirrordirector.raspbian.org`替换为`mirrors.ustc.edu.cn/raspbian/`。
+实际修改是，将`mirrordirector.raspbian.org`替换为`mirrors.ustc.edu.cn/raspbian/`。
 
 <!--more-->
 
@@ -47,4 +47,4 @@ deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main contrib non-free r
 # use ustc mirror:
 deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/debian/ jessie main ui
 ```
-这里的修改是，将`archive.raspberrypi.org`替换为`mirrors.ustc.edu.cn/archive.raspberrypi.org`。
+实际修改是，将`archive.raspberrypi.org`替换为`mirrors.ustc.edu.cn/archive.raspberrypi.org`。
