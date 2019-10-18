@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.3" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Docker | xusiwei&#39;s blog</title>
+    <meta property="og:title" content="Docker - xusiwei&#39;s blog">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="Docker">
+        
+    <meta name="author" content="">
+    <meta property="og:url" content="https://xusiwei.github.io/topics/docker/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="https://xusiwei.github.io/topics/docker/index.xml" title="xusiwei's blog" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://xusiwei.github.io/">
+                        xusiwei&#39;s blog
+                    </a>
+                
+                <p class="description">A coder&#39;s daily</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://xusiwei.github.io/">首页</a>
+                    
+                    <a  href="https://xusiwei.github.io/post/" title="Posts">Posts</a>
+                    
+                    <a  href="https://xusiwei.github.io/about/" title="About">About</a>
+                    
+                    <a  href="https://xusiwei.github.io/" title="Home">Home</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://xusiwei.github.io/post/2016/docker-get-start/">docker 入门指南</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年3月8日
+                            </date>
+                            
+                            <div class="post-content">
+                                <p>本文是实践官方“Get Started”的一个记录，由于我的桌面系统是Debian 8，本文的操作仅确保在 Debian 8 上正确。
+指南链接（Linux版）： <a href="https://docs.docker.com/linux/">https://docs.docker.com/linux/</a></p>
+
+<h2 id="安装-docker">安装 Docker</h2>
+
+<h3 id="官方脚本安装">官方脚本安装</h3>
+
+<p>如果没有 curl ，先安装 curl</p>
+
+<pre><code>sudo apt-get update
+sudo apt-get install curl
+</code></pre>
+
+<p>用curl下载安装脚本并运行：</p>
+
+<pre><code>curl -fsSL https://get.docker.com/ | sh
+</code></pre>
+
+<p>安装成功后会提示你，使用如下命令：</p>
+
+<pre><code>sudo usermod -aG docker xu
+</code></pre>
+
+<p>将当前用户（xu）加到docker组，此后运行docker可以不加sudo。另外，让当前用户的组别改变需要重新登录（先log out再log in）。</p>
+
+<h3 id="验证">验证</h3>
+
+<h3 id="bash">bash</h3>
+
+<pre><code>docker run -i -t debian docker
+</code></pre>
+
+<p>可以用docker创建一个交互的bash会话，在新的会话中运行ps -ef：</p>
+
+<pre><code>xu@debian:~$ docker run -i -t debian bash
+root@d99cc11447c7:/#
+root@d99cc11447c7:/#
+root@d99cc11447c7:/# ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  2 15:32 ?        00:00:00 bash
+root         8     1  0 15:32 ?        00:00:00 ps -ef
+</code></pre>
+
+<p>可以看到，仅有两个进程，而且pid都非常小。这说明，这个会话环境已经与外界隔离了。</p>……
+                                <p class="readmore"><a href="https://xusiwei.github.io/post/2016/docker-get-start/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://xusiwei.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/raspberry-pi-use-ustc-mirror/" title="Raspberry Pi 使用科大镜像源">Raspberry Pi 使用科大镜像源</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/raspberry-pi-headless-setup/" title="Raspberry Pi 3 无显示器 安装指南">Raspberry Pi 3 无显示器 安装指南</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/nginx-concurrency-model/" title="NGINX的并发模型">NGINX的并发模型</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/docker-get-start/" title="docker 入门指南">docker 入门指南</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/nginx-source-install/" title="NGINX 源码安装">NGINX 源码安装</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/build-blog-with-hugo-and-github-pages/" title="用Hugo和GitHub Pages搭建博客">用Hugo和GitHub Pages搭建博客</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/hello-world/" title="你好，世界">你好，世界</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://xusiwei.github.io/tags/raspberry-pi/">raspberry-pi</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://xusiwei.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://xusiwei.github.io/">xusiwei&#39;s blog By </a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.3" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Raspberry Pi | xusiwei&#39;s blog</title>
+    <meta property="og:title" content="Raspberry Pi - xusiwei&#39;s blog">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="Raspberry Pi">
+        
+    <meta name="author" content="">
+    <meta property="og:url" content="https://xusiwei.github.io/tags/raspberry-pi/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="https://xusiwei.github.io/tags/raspberry-pi/index.xml" title="xusiwei's blog" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://xusiwei.github.io/">
+                        xusiwei&#39;s blog
+                    </a>
+                
+                <p class="description">A coder&#39;s daily</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://xusiwei.github.io/">首页</a>
+                    
+                    <a  href="https://xusiwei.github.io/post/" title="Posts">Posts</a>
+                    
+                    <a  href="https://xusiwei.github.io/about/" title="About">About</a>
+                    
+                    <a  href="https://xusiwei.github.io/" title="Home">Home</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        包含标签
+                        <span class="keyword">Raspberry Pi</span>
+                        的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://xusiwei.github.io/post/2016/raspberry-pi-use-ustc-mirror/">Raspberry Pi 使用科大镜像源</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年3月26日
+                            </date>
+                            
+                            <div class="post-content">
+                                <p><a href="http://mirrors.ustc.edu.cn/">科大开源镜像站</a>提供了raspbian的软件包镜像，国内的用户可以选择改用科大镜像站作为更新源。</p>
+
+<p>科大镜像站官方已经提供了一份<a href="https://lug.ustc.edu.cn/wiki/mirrors/help/raspbian">帮助文档</a>，用于指导用户如何使用科大镜像更新raspbian。
+但这份文档是基于 wheezy 的，最新的jessie版可以参考本文。</p>
+
+<h2 id="具体做法">具体做法</h2>
+
+<p>修改之前，最好先备份原始的配置文件。例如，使用如下命令将两个源配置文件拷贝到HOME目录。</p>
+
+<pre><code>cp /etc/apt/sources.list ~
+cp /etc/apt/sources.d/raspi.list ~
+</code></pre>
+
+<p>或者直接在原来配置文件的基础上修改，但将原有的配置全部注释掉（使用#注释）。</p>
+
+<h3 id="修改-source-list">修改 source.list</h3>
+
+<p>更新后的<code>/etc/apt/sources.list</code>：</p>
+
+<pre><code>#deb http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpi
+# Uncomment line below then 'apt-get update' to enable 'apt-get source'
+#deb-src http://archive.raspbian.org/raspbian/ jessie main contrib non-free rpi
+
+# use ustc mirror:
+deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main contrib non-free rpi
+</code></pre>
+
+<p>实际修改是，将<code>mirrordirector.raspbian.org</code>替换为<code>mirrors.ustc.edu.cn/raspbian/</code>。</p>……
+                                <p class="readmore"><a href="https://xusiwei.github.io/post/2016/raspberry-pi-use-ustc-mirror/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://xusiwei.github.io/post/2016/raspberry-pi-headless-setup/">Raspberry Pi 3 无显示器 安装指南</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年3月26日
+                            </date>
+                            
+                            <div class="post-content">
+                                <p>本文记录了——在没有显示器、键盘的条件下，如何通过网线为树梅派（后面简称pi）安装系统。</p>
+
+<p>实验环境如下图。</p>
+
+<p><img src="/post/2016/raspi-rj45-laptop.png" alt="raspberrypi-rj45-laptop" /></p>
+
+<h2 id="下载系统镜像">下载系统镜像</h2>
+
+<p>官网的<a href="https://www.raspberrypi.org/downloads">下载页面</a>可以找到pi的系统镜像。</p>
+
+<p>官方首推新手使用的是NOOBS和raspbian，而NOOBS和Raspbian都提供了完整版和Lite版。</p>
+
+<p>NOOBS的完整版是包含了Raspbian，可以离线安装raspbian。Lite版仅有一个系统安装程序，需要连接网络才能安装具体的操作系统。</p>
+
+<p>Raspbian的完整版是一个完整的桌面镜像，Lite版预装的软件包要少一些（联网后可以继续安装）。</p>
+
+<p>我下载的是<a href="http://director.downloads.raspberrypi.org/raspbian/images/raspbian-2016-03-18/2016-03-18-raspbian-jessie.zip">RASPBIAN JESSIE</a></p>
+
+<p>下载完成后解压zip文件，将会得到一个img文件。</p>……
+                                <p class="readmore"><a href="https://xusiwei.github.io/post/2016/raspberry-pi-headless-setup/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://xusiwei.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/raspberry-pi-use-ustc-mirror/" title="Raspberry Pi 使用科大镜像源">Raspberry Pi 使用科大镜像源</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/raspberry-pi-headless-setup/" title="Raspberry Pi 3 无显示器 安装指南">Raspberry Pi 3 无显示器 安装指南</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/nginx-concurrency-model/" title="NGINX的并发模型">NGINX的并发模型</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/docker-get-start/" title="docker 入门指南">docker 入门指南</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/nginx-source-install/" title="NGINX 源码安装">NGINX 源码安装</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/build-blog-with-hugo-and-github-pages/" title="用Hugo和GitHub Pages搭建博客">用Hugo和GitHub Pages搭建博客</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/hello-world/" title="你好，世界">你好，世界</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://xusiwei.github.io/tags/raspberry-pi/">raspberry-pi</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://xusiwei.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://xusiwei.github.io/">xusiwei&#39;s blog By </a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+
+</body>
+</html>

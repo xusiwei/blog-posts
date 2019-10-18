@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.3" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Raspberry Pi 3 无显示器 安装指南 | Siwei Xu</title>
+    <meta property="og:title" content="Raspberry Pi 3 无显示器 安装指南 - Siwei Xu">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2016-03-26T09:31:01&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2016-03-26T09:31:01&#43;08:00">
+        
+    <meta name="Keywords" content="android,c&#43;&#43;,go,golang,java,python,软件架构,机器学习">
+    <meta name="description" content="Raspberry Pi 3 无显示器 安装指南">
+        
+    <meta name="author" content="Siwei Xu">
+    <meta property="og:url" content="https://xusiwei.github.io/post/2016/raspberry-pi-headless-setup/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://xusiwei.github.io/">
+                        Siwei Xu
+                    </a>
+                
+                <p class="description">专注C&#43;&#43;、Linux、Android</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://xusiwei.github.io/">首页</a>
+                    
+                    <a  href="https://xusiwei.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://xusiwei.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Raspberry Pi 3 无显示器 安装指南</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2016年3月26日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://xusiwei.github.io/categories/%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6">开源硬件</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            <p>本文记录了——在没有显示器、键盘的条件下，如何通过网线为树梅派（后面简称pi）安装系统。</p>
+
+<p>实验环境如下图。</p>
+
+<p><img src="/post/2016/raspi-rj45-laptop.png" alt="raspberrypi-rj45-laptop" /></p>
+
+<h2 id="下载系统镜像">下载系统镜像</h2>
+
+<p>官网的<a href="https://www.raspberrypi.org/downloads">下载页面</a>可以找到pi的系统镜像。</p>
+
+<p>官方首推新手使用的是NOOBS和raspbian，而NOOBS和Raspbian都提供了完整版和Lite版。</p>
+
+<p>NOOBS的完整版是包含了Raspbian，可以离线安装raspbian。Lite版仅有一个系统安装程序，需要连接网络才能安装具体的操作系统。</p>
+
+<p>Raspbian的完整版是一个完整的桌面镜像，Lite版预装的软件包要少一些（联网后可以继续安装）。</p>
+
+<p>我下载的是<a href="http://director.downloads.raspberrypi.org/raspbian/images/raspbian-2016-03-18/2016-03-18-raspbian-jessie.zip">RASPBIAN JESSIE</a></p>
+
+<p>下载完成后解压zip文件，将会得到一个img文件。</p>
+
+<h2 id="将镜像写入sd卡">将镜像写入SD卡</h2>
+
+<p>Windows系统上可以用 <a href="https://sourceforge.net/projects/win32diskimager/">Win32 Disk Imager</a> 进行写入。</p>
+
+<p>Linux/Mac OS上可以用dd命令。</p>
+
+<p>插入sd卡之前可以看看系统当前有哪些存储设备：</p>
+
+<pre><code>ls /dev/sd*
+</code></pre>
+
+<p>插入sd卡之后，再看一次，前后比较，就可以知道sd卡对于的设备路径了。</p>
+
+<p>比如你的sd卡设备是<code>/dev/sdx</code>，可以用如下命令，将镜像写入sd卡。</p>
+
+<pre><code>dd bs=4M if=2016-03-18-raspbian-jessie.img of=/dev/sdx
+</code></pre>
+
+<p>写入镜像的过程比较慢，而且dd命令没有输出，可以在另一个终端里用命令<code>sudo pkill -USR1 -n -x dd</code>向dd发信号，让dd报告当前进度。</p>
+
+<h2 id="启动pi">启动pi</h2>
+
+<p>pi镜像文件写入sd卡完成后，就可以用sd卡启动pi了。</p>
+
+<p>但为了能够通过网线连接pi，还需要再做一点配置。</p>
+
+<h3 id="修改pi的启动参数">修改pi的启动参数</h3>
+
+<p>下面介绍如何为网线的两端配置IP。</p>
+
+<p>在将sd卡装到pi上之前，可以通过修改启动参数，为pi预分配一个IP地址。</p>
+
+<p>具体做法是，查看刚写好的sd卡，找到 cmdline.txt，在最末尾加上：</p>
+
+<pre><code>ip=192.168.1.2
+</code></pre>
+
+<p>（PS: 需要注意的是，不能换行，<code>ip</code>是小写。）
+这样，pi上电、启动后，会为它的网口分配<code>192.168.1.2</code>。</p>
+
+<h3 id="连接pi和pc">连接pi和PC</h3>
+
+<p>修改完pi的启动参数，就可以：</p>
+
+<ol>
+<li>将读卡器从PC上取下, 将sd卡装到pi上</li>
+<li>用网线将pi的网口和PC的网口连接起来</li>
+<li>插上pi的电源</li>
+</ol>
+
+<h3 id="修改pc的网口ip">修改PC的网口IP</h3>
+
+<p>接下来要做的是修改PC端的网口IP。Windows系统可以在“TCP/IP选项”设置，<a href="http://www.howtogeek.com/howto/19249/how-to-assign-a-static-ip-address-in-xp-vista-or-windows-7/">参考此链接</a>。</p>
+
+<pre><code>xu@debian:~$ ifconfig eth0 | grep inet
+xu@debian:~$ sudo ifconfig eth0 192.168.1.4
+xu@debian:~$ ifconfig eth0 | grep inet
+          inet addr:192.168.1.4  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::226a:8aff:fe32:f22c/64 Scope:Link
+</code></pre>
+
+<p>修改成功后，可以通过ping命令测试一下，是否两端的IP都已经按照预期配置了。</p>
+
+<pre><code>xu@debian:~$ ping 192.168.1.2
+PING 192.168.1.2 (192.168.1.2) 56(84) bytes of data.
+64 bytes from 192.168.1.2: icmp_seq=1 ttl=64 time=0.585 ms
+64 bytes from 192.168.1.2: icmp_seq=2 ttl=64 time=0.474 ms
+64 bytes from 192.168.1.2: icmp_seq=3 ttl=64 time=0.468 ms
+^C
+--- 192.168.1.2 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 1999ms
+rtt min/avg/max/mdev = 0.468/0.509/0.585/0.053 ms
+</code></pre>
+
+<h2 id="使用-ssh-客户端连接到-pi">使用 ssh 客户端连接到 pi</h2>
+
+<p>接下来就可以用ssh客户端链接pi了。Windows系统可以使用<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a>。</p>
+
+<pre><code>xu@debian:~$ ssh pi@192.168.1.2
+</code></pre>
+
+<p>pi的默认用户名、密码分别是<code>pi</code>、<code>raspberry</code></p>
+
+<p>密码输入正确后，可以看到：</p>
+
+<pre><code>
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri Mar 18 08:58:31 2016
+pi@raspberrypi:~ $
+</code></pre>
+
+<h3 id="展开文件系统">展开文件系统</h3>
+
+<p>成功登录pi后，运行 raspi-config， 通过上下键选择，回车确认，TAB跳转。</p>
+
+<p>选择第一项，“Expand Filesystem”。</p>
+
+<p>至此，系统安装完成。</p>
+
+<h2 id="问题排除">问题排除</h2>
+
+<p>整个过程中最重要一步是，为网线的两端分配IP。你可通过：</p>
+
+<ul>
+<li>ifconfig 查看PC的网口是否正常分配了IP</li>
+<li>ping 命令测试pi的网口是否正常分配了IP</li>
+</ul>
+
+<p>整个过程中修改的文件仅有一个 cmdline.txt，如果pi端没有正常分配IP。从pi上取下sd卡，连到PC上，查看cmdline.txt是否按照正确的方式修改了。</p>
+
+<p>如果pi还没能正常的IP，重复前面的步骤。</p>
+
+<p>注意，PC上网线连接中断会清除IP。而pi的IP是通过启动参数配置的，所以不会轻易消失; 如果你需要让pi连接路由器，并自动获取IP，需要将启动参数上的ip删除。</p>
+
+<h2 id="引用链接">引用链接</h2>
+
+<p>我PC的系统是Linux，本文记录的步骤仅对Linux系统用户有参考意义。</p>
+
+<p>Windows用户参考：<a href="http://www.circuitbasics.com/raspberry-pi-basics-setup-without-monitor-keyboard-headless-mode/">此链接</a>。</p>
+
+<p>Mac用户参考：<a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md">此链接</a>。</p>
+
+<p><a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md">https://www.raspberrypi.org/documentation/installation/installing-images/linux.md</a>
+<a href="https://www.raspberrypi.org/blog/use-your-desktop-or-laptop-screen-and-keyboard-with-your-pi/">https://www.raspberrypi.org/blog/use-your-desktop-or-laptop-screen-and-keyboard-with-your-pi/</a>
+<a href="https://pihw.wordpress.com/guides/direct-network-connection/">https://pihw.wordpress.com/guides/direct-network-connection/</a></p>
+                        </div>
+
+                        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://xusiwei.github.io/">Siwei Xu</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://xusiwei.github.io/post/2016/raspberry-pi-headless-setup/">https://xusiwei.github.io/post/2016/raspberry-pi-headless-setup/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/2016/nginx-concurrency-model/">NGINX的并发模型</a></li>
+        
+        <li><a href="/post/2016/docker-get-start/">docker 入门指南</a></li>
+        
+        <li><a href="/post/2016/nginx-source-install/">NGINX 源码安装</a></li>
+        
+        <li><a href="/post/2016/build-blog-with-hugo-and-github-pages/">用Hugo和GitHub Pages搭建博客</a></li>
+        
+        <li><a href="/about/">about</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://xusiwei.github.io/tags/RaspberryPi">RaspberryPi</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://xusiwei.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/raspberry-pi-use-ustc-mirror/" title="Raspberry Pi 使用科大镜像源">Raspberry Pi 使用科大镜像源</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/raspberry-pi-headless-setup/" title="Raspberry Pi 3 无显示器 安装指南">Raspberry Pi 3 无显示器 安装指南</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/nginx-concurrency-model/" title="NGINX的并发模型">NGINX的并发模型</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/docker-get-start/" title="docker 入门指南">docker 入门指南</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/nginx-source-install/" title="NGINX 源码安装">NGINX 源码安装</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/2016/build-blog-with-hugo-and-github-pages/" title="用Hugo和GitHub Pages搭建博客">用Hugo和GitHub Pages搭建博客</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/post/hello-world/" title="你好，世界">你好，世界</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://xusiwei.github.io/categories/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">使用指南(3)</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/categories/%E5%BC%80%E6%BA%90%E7%A1%AC%E4%BB%B6/">开源硬件(2)</a>
+    </li>
+    
+    <li>
+        <a href="https://xusiwei.github.io/categories/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/">开源软件(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://xusiwei.github.io/tags/Docker/">Docker</a>
+    
+    <a href="https://xusiwei.github.io/tags/GitHub/">GitHub</a>
+    
+    <a href="https://xusiwei.github.io/tags/Hugo/">Hugo</a>
+    
+    <a href="https://xusiwei.github.io/tags/Nginx/">Nginx</a>
+    
+    <a href="https://xusiwei.github.io/tags/RaspberryPi/">RaspberryPi</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://xusiwei.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://xusiwei.github.io/">Siwei Xu By Siwei Xu</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

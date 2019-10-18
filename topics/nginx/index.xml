@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on xusiwei&#39;s blog</title>
+    <link>https://xusiwei.github.io/topics/nginx/</link>
+    <description>Recent content in Nginx on xusiwei&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 07 Mar 2016 23:35:28 +0800</lastBuildDate>
+    
+	<atom:link href="https://xusiwei.github.io/topics/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NGINX 源码安装</title>
+      <link>https://xusiwei.github.io/post/2016/nginx-source-install/</link>
+      <pubDate>Mon, 07 Mar 2016 23:35:28 +0800</pubDate>
+      
+      <guid>https://xusiwei.github.io/post/2016/nginx-source-install/</guid>
+      <description>&lt;p&gt;NIGNX 是由 Igor Sysoev 开发的一个 Web 服务器。
+官网：&lt;a href=&#34;http://nginx.org/&#34;&gt;http://nginx.org/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下载页面： &lt;a href=&#34;http://nginx.org/en/download.html&#34;&gt;http://nginx.org/en/download.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;下载-nginx&#34;&gt;下载 NGINX&lt;/h2&gt;
+
+&lt;p&gt;以 1.8.1 版本为例：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget http://nginx.org/download/nginx-1.8.1.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;下载依赖库&#34;&gt;下载依赖库&lt;/h2&gt;
+
+&lt;p&gt;NGINX必须依赖zlib和pcre, (若想让nginx支持HTTPS协议，还需OpenSSL)&lt;/p&gt;
+
+&lt;p&gt;NGINX 使用zlib进行gzip编/解码（压缩/解压缩）， zlib: &lt;a href=&#34;http://zlib.net/&#34;&gt;http://zlib.net/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下载 zlib-1.2.8:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget http://zlib.net/zlib-1.2.8.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;NGINX 使用pcre作正则表达式匹配， pcre: &lt;a href=&#34;http://pcre.org/&#34;&gt;http://pcre.org/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ftp: &lt;a href=&#34;ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/&#34;&gt;ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下载 pcre-8.38:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;解压&#34;&gt;解压&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;tar xzvf nginx-1.8.1.tar.gz
+
+tar xzvf zlib-1.2.8.tar.gz
+
+tar xzvf pcre-8.38.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;cd nginx-1.8.1/
+
+./configure --with-pcre=../pcre-8.38 --with-zlib=../zlib-1.2.8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo make install
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
