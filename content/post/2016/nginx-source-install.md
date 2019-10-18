@@ -2,9 +2,9 @@
 date = "2016-03-07T23:35:28+08:00"
 description = ""
 draft = false
-tags = []
+tags = ["Nginx"]
 title = "NGINX 源码安装"
-topics = ["Nginx", "Ops"]
+categories = ["使用指南"]
 
 +++
 

@@ -2,9 +2,9 @@
 date = "2016-03-09T23:38:56+08:00"
 description = ""
 draft = false
-tags = []
+tags = ["Nginx"]
 title = "NGINX的并发模型"
-topics = []
+categories = ["开源软件"]
 
 +++
 

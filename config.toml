@@ -1,48 +1,42 @@
-baseurl = "https://xusiwei.github.io/"
-title = "xusiwei's blog"
-author = "Siwei Xu"
-languageCode = "zh-cn"
-theme = "blackburn"
+baseURL = "https://xusiwei.github.io/"
+languageCode = "zh-CN"
+theme = "maupassant"
+title = "Siwei Xu"
+toc = true
+disablePathToLower = true
 
-# Shown in the side menu
-copyright = "&copy; 2016. All rights reserved."
-canonifyurls = false
-paginate = 10
-
-[indexes]
-  tag = "tags"
-  topic = "topics"
+[author]
+name = "Siwei Xu"
 
 [params]
-  # Shown in the home page
-  brand = "siwei"
-  duoshuo = true
-  subtitle = "A coder's daily"
+  author = "Siwei Xu"
+  subtitle = "专注C++、Linux、Android"
+  keywords = "android,c++,go,golang,java,python,软件架构,机器学习"
+  description = "专注于软件开发、算法设计，包括但不限于服务端、移动端等平台"
   # CSS name for highlight.js
   highlightjs = "androidstudio"
   dateFormat = "2006-01-02, 15:04"
   googleAnalytics = "UA-75067552-1"
 
 [menu]
-  # Shown in the side menu.
   [[menu.main]]
-    name = "Home"
-    pre = "<i class='fa fa-home fa-fw'></i>"
-    weight = 0
-    identifier = "home"
-    url = "/"
-  [[menu.main]]
-    name = "Posts"
-    pre = "<i class='fa fa-list fa-fw'></i>"
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
     weight = 1
-    identifier = "post"
-    url = "/post/"
   [[menu.main]]
-    name = "About"
-    pre = "<i class='fa fa-user fa-fw'></i>"
-    weight = 2
     identifier = "about"
+    name = "关于"
     url = "/about/"
+    weight = 2
+
+[indexes]
+  tag = "tags"
+  category = "categories"
+
+[params.cc]
+  name = "知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议"
+  link = "https://creativecommons.org/licenses/by-nc-nd/4.0/"
 
 [social]
   # Link your social networking accouns to the side menu

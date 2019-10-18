@@ -2,9 +2,9 @@
 date = "2016-03-26T18:40:13+08:00"
 description = ""
 draft = false
-tags = ["Raspberry Pi"]
+tags = ["RaspberryPi"]
 title = "Raspberry Pi 使用科大镜像源"
-topics = []
+categories = ["开源硬件"]
 
 +++
 

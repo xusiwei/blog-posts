@@ -2,9 +2,9 @@
 date = "2016-02-21T16:36:54+08:00"
 description = "本文记录了我用Hugo和GitHub Pages搭建静态博客的过程，以及我对此的一点想法"
 draft = false
-tags = []
+tags = ["Hugo","GitHub"]
 title = "用Hugo和GitHub Pages搭建博客"
-topics = []
+categories = ["使用指南"]
 
 +++
 

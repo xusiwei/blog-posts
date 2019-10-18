@@ -1,0 +1,37 @@
+language: c
+
+os:
+  - linux
+
+install:
+  - wget --quiet https://github.com/gohugoio/hugo/releases/download/v0.58.3/hugo_0.58.3_Linux-64bit.tar.gz
+  - tar xzvf hugo_0.58.3_Linux-64bit.tar.gz
+  - export PATH=$PATH:$PWD
+
+# before_script:
+#   - mkdir public && git clone https://github.com/$GITHUB_USER_ID/$GITHUB_USER_ID.github.io.git public
+
+script:
+  - hugo
+
+deploy:
+  repo: $GITHUB_USER_ID/$GITHUB_USER_ID.github.io
+  provider: pages # 重要，指定这是一份github pages的部署配置
+  skip-cleanup: true # 重要，不能省略
+  local-dir: public # 静态站点文件所在目录
+  target-branch: master # 要将静态站点文件发布到哪个分支
+  github-token: $GITHUB_API_TOKEN # 重要，$GITHUB_TOKEN是变量，需要在GitHub上申请、再到配置到Travis
+  keep-history: true # 是否保持target-branch分支的提交记录
+  on:
+    branch: master # 博客源码的分支
+
+after_success:
+  - echo Generate success, deploy site to GitHub Pages.
+  # - subject=`git log --pretty=%s -n 1`
+  # - cd public
+  # - git add .
+  # - echo "SUB = $subject" && git -c user.name='travis-ci' -c user.email="$GITHUB_USER_EMAIL" commit -m "$subject"
+  # - git push -f https://$GITHUB_USER_ID:$GITHUB_TOKEN@github.com/$GITHUB_USER_ID/$GITHUB_USER_ID.github.io.git
+
+after_failure:
+  - echo build failure

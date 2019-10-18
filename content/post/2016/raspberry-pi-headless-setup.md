@@ -2,9 +2,9 @@
 date = "2016-03-26T09:31:01+08:00"
 description = ""
 draft = false
-tags = ["Raspberry Pi"]
+tags = ["RaspberryPi"]
 title = "Raspberry Pi 3 无显示器 安装指南"
-topics = []
+categories = ["开源硬件"]
 
 +++
 
@@ -123,7 +123,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Fri Mar 18 08:58:31 2016
-pi@raspberrypi:~ $ 
+pi@raspberrypi:~ $
 ```
 
 ### 展开文件系统

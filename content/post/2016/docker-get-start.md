@@ -2,9 +2,9 @@
 date = "2016-03-08T22:58:33+08:00"
 description = ""
 draft = false
-tags = []
+tags = ["Docker"]
 title = "docker 入门指南"
-topics = ["Docker"]
+categories = ["使用指南"]
 
 +++
 
