@@ -1,7 +1,7 @@
 baseURL = "https://xusiwei.github.io/"
 languageCode = "zh-CN"
 theme = "maupassant"
-title = "Siwei Xu"
+title = "思维的博客"
 toc = true
 disablePathToLower = true
 

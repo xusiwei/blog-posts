@@ -8,9 +8,6 @@ install:
   - tar xzvf hugo_0.58.3_Linux-64bit.tar.gz
   - export PATH=$PATH:$PWD
 
-# before_script:
-#   - mkdir public && git clone https://github.com/$GITHUB_USER_ID/$GITHUB_USER_ID.github.io.git public
-
 script:
   - hugo
 
@@ -24,14 +21,3 @@ deploy:
   keep-history: true # 是否保持target-branch分支的提交记录
   on:
     branch: master # 博客源码的分支
-
-after_success:
-  - echo Generate success, deploy site to GitHub Pages.
-  # - subject=`git log --pretty=%s -n 1`
-  # - cd public
-  # - git add .
-  # - echo "SUB = $subject" && git -c user.name='travis-ci' -c user.email="$GITHUB_USER_EMAIL" commit -m "$subject"
-  # - git push -f https://$GITHUB_USER_ID:$GITHUB_TOKEN@github.com/$GITHUB_USER_ID/$GITHUB_USER_ID.github.io.git
-
-after_failure:
-  - echo build failure

@@ -4,7 +4,7 @@ description = ""
 draft = false
 tags = ["Docker"]
 title = "docker 入门指南"
-categories = ["使用指南"]
+categories = ["操作指南"]
 
 +++
 

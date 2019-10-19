@@ -4,7 +4,7 @@ description = "本文记录了我用Hugo和GitHub Pages搭建静态博客的过�
 draft = false
 tags = ["Hugo","GitHub"]
 title = "用Hugo和GitHub Pages搭建博客"
-categories = ["使用指南"]
+categories = ["操作指南"]
 
 +++
 

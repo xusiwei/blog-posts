@@ -4,7 +4,7 @@ description = ""
 draft = false
 tags = ["Nginx"]
 title = "NGINX 源码安装"
-categories = ["使用指南"]
+categories = ["操作指南"]
 
 +++
 
