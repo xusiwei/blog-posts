@@ -4,6 +4,8 @@ theme = "maupassant"
 title = "思维的博客"
 toc = true
 disablePathToLower = true
+googleAnalytics = "UA-75067552-1"
+hasCJKLanguage = true
 
 [author]
 name = "Siwei Xu"
@@ -16,7 +18,6 @@ name = "Siwei Xu"
   # CSS name for highlight.js
   highlightjs = "androidstudio"
   dateFormat = "2006-01-02, 15:04"
-  googleAnalytics = "UA-75067552-1"
 
 [menu]
   [[menu.main]]
@@ -25,10 +26,15 @@ name = "Siwei Xu"
     url = "/archives/"
     weight = 1
   [[menu.main]]
+    identifier = "links"
+    name = "链接"
+    url = "/links/"
+    weight = 2
+  [[menu.main]]
     identifier = "about"
     name = "关于"
     url = "/about/"
-    weight = 2
+    weight = 3
 
 [indexes]
   tag = "tags"
