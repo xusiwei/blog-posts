@@ -7,7 +7,7 @@ title = "用Travis CI自动化Hugo生成及GitHub Pages部署"
 categories = ["操作指南"]
 +++
 
-# Automation Hugo Generation and GitHub Pages Deployment with Travis CI
+# 用Travis CI自动化Hugo生成及GitHub Pages部署
 
 ## 背景
 
