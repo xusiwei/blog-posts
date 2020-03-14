@@ -2,7 +2,7 @@
 title: "Effective C++（第三版）第一章笔记"
 date: "2020-02-01T12:04:52+08:00"
 toc: true
-tags: ["notes"]
+tags: ["notes", "C++"]
 categories: ["读书笔记"]
 ---
 
